@@ -11,7 +11,7 @@ title: Music Engineering Portfolio
 {% assign sorted = site.projects | sort: "publish_date" | reverse %}
 {% for project in sorted %}
   <li>
-    <a href="{{ project.url }}">
+    <a href="{{ project.url | relative_url }}">
       <strong>{{ project.title }}</strong>
     </a><br>
     {{ project.student_name }} — {{ project.category }}<br>
