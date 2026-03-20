@@ -3,7 +3,7 @@ layout: project
 title: "Test Project"
 student_name: "Jane Smith"
 student_slug: "jane-smith"
-category: "DSP"
+category: "Capstone"
 tags:
   - dsp
   - audio
