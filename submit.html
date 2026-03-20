@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submission Helper</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+</head>
+<body>
+  <main class="container stack">
+    <section class="stack">
+      <p class="meta">Submission Helper</p>
+      <h1>Project File Generator</h1>
+      <p class="meta">Fill out the form, then copy the generated filename and markdown into GitHub.</p>
+    </section>
+
+    <section class="card">
+      <div class="card-body">
+        <h2>Project Details</h2>
+        <div class="grid">
+          <label>Project Title
+            <input id="title" type="text" placeholder="My Awesome Audio Project">
+          </label>
+          <label>Student Name
+            <input id="student_name" type="text" placeholder="Jane Smith">
+          </label>
+          <label>Student Slug
+            <input id="student_slug" type="text" placeholder="jane-smith">
+          </label>
+          <label>Category
+            <select id="category">
+              <option>DSP</option>
+              <option>Production</option>
+              <option>Machine Learning</option>
+              <option>Hardware</option>
+              <option>Composition</option>
+              <option>Performance</option>
+              <option>Research</option>
+              <option>Other</option>
+            </select>
+          </label>
+          <label>Tags (comma separated)
+            <input id="tags" type="text" placeholder="dsp, audio, effects">
+          </label>
+          <label>Publish Date
+            <input id="publish_date" type="date">
+          </label>
+        </div>
+
+        <div class="stack mt-4">
+          <label>Short Blurb
+            <input id="short_blurb" type="text" placeholder="One sentence summary.">
+          </label>
+          <label>Thumbnail Image Path
+            <input id="thumbnail_image" type="text" placeholder="/assets/images/projects/my-project.jpg">
+          </label>
+          <label>Repository URL
+            <input id="repo_url" type="url" placeholder="https://github.com/your-username/your-project">
+          </label>
+          <label>Demo URL (optional)
+            <input id="demo_url" type="url" placeholder="https://youtu.be/your-demo-video">
+          </label>
+          <label>Featured
+            <select id="featured">
+              <option value="false" selected>false</option>
+              <option value="true">true</option>
+            </select>
+          </label>
+          <label>Full Description
+            <textarea id="full_description" rows="6" placeholder="Describe your project in detail."></textarea>
+          </label>
+        </div>
+
+        <div class="button-row mt-4">
+          <button id="generate" class="button-link" type="button">Generate Markdown</button>
+          <button id="copy_filename" class="button-link" type="button">Copy Filename</button>
+          <button id="copy_markdown" class="button-link" type="button">Copy Markdown</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-body">
+        <h2>Output</h2>
+        <p class="meta">Filename:</p>
+        <pre id="filename_out">your-project.md</pre>
+
+        <p class="meta">Markdown content:</p>
+        <textarea id="markdown_out" rows="18" readonly></textarea>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var fields = {
+        title: document.getElementById('title'),
+        student_name: document.getElementById('student_name'),
+        student_slug: document.getElementById('student_slug'),
+        category: document.getElementById('category'),
+        tags: document.getElementById('tags'),
+        short_blurb: document.getElementById('short_blurb'),
+        thumbnail_image: document.getElementById('thumbnail_image'),
+        full_description: document.getElementById('full_description'),
+        repo_url: document.getElementById('repo_url'),
+        demo_url: document.getElementById('demo_url'),
+        featured: document.getElementById('featured'),
+        publish_date: document.getElementById('publish_date')
+      };
+
+      var filenameOut = document.getElementById('filename_out');
+      var markdownOut = document.getElementById('markdown_out');
+
+      function slugify(text) {
+        return (text || '')
+          .toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-');
+      }
+
+      function yamlQuote(text) {
+        var safe = (text || '').replace(/"/g, '\\"');
+        return '"' + safe + '"';
+      }
+
+      function toTagLines(tagsInput) {
+        var tags = tagsInput
+          .split(',')
+          .map(function (tag) { return tag.trim(); })
+          .filter(Boolean);
+
+        if (!tags.length) {
+          return ['  - audio'];
+        }
+
+        return tags.map(function (tag) { return '  - ' + tag; });
+      }
+
+      function todayISO() {
+        return new Date().toISOString().slice(0, 10);
+      }
+
+      function generate() {
+        var title = fields.title.value.trim() || 'Project Title';
+        var studentName = fields.student_name.value.trim() || 'Student Name';
+        var studentSlug = fields.student_slug.value.trim() || slugify(studentName) || 'student-name';
+        var category = fields.category.value.trim() || 'DSP';
+        var tags = toTagLines(fields.tags.value);
+        var shortBlurb = fields.short_blurb.value.trim() || 'One sentence summary.';
+        var thumbnail = fields.thumbnail_image.value.trim() || '/assets/images/projects/your-image.jpg';
+        var fullDescription = fields.full_description.value.trim() || 'Describe your project in detail.';
+        var repoUrl = fields.repo_url.value.trim() || '';
+        var demoUrl = fields.demo_url.value.trim() || '';
+        var featured = fields.featured.value === 'true' ? 'true' : 'false';
+        var publishDate = fields.publish_date.value || todayISO();
+
+        var baseName = slugify(title) || studentSlug + '-project';
+        var filename = baseName + '.md';
+
+        var markdown = [
+          '---',
+          'layout: project',
+          'title: ' + yamlQuote(title),
+          'student_name: ' + yamlQuote(studentName),
+          'student_slug: ' + yamlQuote(studentSlug),
+          'category: ' + yamlQuote(category),
+          'tags:',
+          tags.join('\n'),
+          'short_blurb: ' + yamlQuote(shortBlurb),
+          'thumbnail_image: ' + yamlQuote(thumbnail),
+          'full_description: ' + yamlQuote(fullDescription),
+          'repo_url: ' + yamlQuote(repoUrl),
+          'demo_url: ' + yamlQuote(demoUrl),
+          'featured: ' + featured,
+          'publish_date: ' + publishDate,
+          '---'
+        ].join('\n');
+
+        filenameOut.textContent = filename;
+        markdownOut.value = markdown;
+      }
+
+      function copyText(text) {
+        if (!text) return;
+        navigator.clipboard.writeText(text).catch(function () {});
+      }
+
+      document.getElementById('generate').addEventListener('click', generate);
+      document.getElementById('copy_filename').addEventListener('click', function () {
+        copyText(filenameOut.textContent);
+      });
+      document.getElementById('copy_markdown').addEventListener('click', function () {
+        copyText(markdownOut.value);
+      });
+
+      if (!fields.publish_date.value) {
+        fields.publish_date.value = todayISO();
+      }
+
+      generate();
+    })();
+  </script>
+</body>
+</html>

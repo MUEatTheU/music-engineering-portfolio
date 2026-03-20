@@ -1,24 +1,56 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{ page.title }}</title>
-  </head>
-  <body>
+---
+layout: default
+---
 
-    <h1>{{ page.title }}</h1>
+<section class="stack">
+  <p class="meta">Project Detail</p>
+  <h1>{{ page.title }}</h1>
+</section>
 
-    <p><strong>Student:</strong> {{ page.student_name }}</p>
-    <p><strong>Category:</strong> {{ page.category }}</p>
-
-    <p>{{ page.full_description }}</p>
-
-    {% if page.repo_url %}
-      <p><a href="{{ page.repo_url }}">View Repository</a></p>
+<section class="section stack">
+  <article class="card card-featured">
+    {% if page.thumbnail_image %}
+      <a class="card-media" href="{{ page.thumbnail_image | relative_url }}">
+        <img src="{{ page.thumbnail_image | relative_url }}" alt="{{ page.title | escape }}">
+      </a>
     {% endif %}
+    <div class="card-body">
+      <h2 class="card-title">Project Overview</h2>
+      <p class="meta">
+        Student:
+        <a href="{{ '/students/' | append: page.student_slug | append: '/' | relative_url }}">{{ page.student_name }}</a>
+      </p>
+      <p class="meta">Course: {{ page.course | default: 'Not provided' }}</p>
+      <p class="meta">
+        {% assign cat_slug = page.category | slugify %}
+        Category:
+        <a href="{{ '/categories/' | append: cat_slug | append: '/' | relative_url }}">{{ page.category }}</a>
+      </p>
+    </div>
+  </article>
 
-    <p>
-      <a href="{{ '/' | relative_url }}">← Back to Home</a>
-    </p>
+  <article class="card">
+    <div class="card-body">
+      <h2>Description</h2>
+      <p class="card-description">{{ page.full_description }}</p>
+    </div>
+  </article>
 
-  </body>
-</html>
+  {% if page.repo_url or page.demo_url %}
+    <article class="card">
+      <div class="card-body">
+        <h2>Project Links</h2>
+        <div class="button-row">
+          {% if page.repo_url %}
+            <a class="button-link" href="{{ page.repo_url }}">View Repository</a>
+          {% endif %}
+          {% if page.demo_url %}
+            <a class="button-link" href="{{ page.demo_url }}">Live Demo</a>
+          {% endif %}
+        </div>
+      </div>
+    </article>
+  {% endif %}
+
+  <p class="meta"><a href="{{ '/' | relative_url }}">← Back to Home</a></p>
+</section>

@@ -2,18 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>{{ page.title }}</title>
-
-  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: page.name | default: page.category | default: 'Music Engineering Portfolio' }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 </head>
 <body>
 
-  <header>
-    <h1><a href="{{ '/' | relative_url }}">Music Engineering Portfolio</a></h1>
-    <hr>
+  <header class="site-header">
+    <div class="container nav-shell">
+      <a class="site-title" href="{{ '/' | relative_url }}">Music Engineering Portfolio</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="nav-link" href="{{ '/categories/' | relative_url }}">Categories</a>
+        <a class="nav-link" href="{{ '/submission/' | relative_url }}">Submit Project</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
+  <main class="stack">
     {{ content }}
   </main>
 

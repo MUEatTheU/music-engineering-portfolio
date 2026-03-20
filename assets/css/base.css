@@ -1,0 +1,144 @@
+:root {
+  --color-bg: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f2f4f7;
+  --color-text: #0f172a;
+  --color-text-muted: #475467;
+  --color-text-soft: #667085;
+  --color-border: #d0d5dd;
+  --color-accent: #0a66ff;
+  --color-accent-hover: #004ee0;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  --font-size-100: 0.875rem;
+  --font-size-200: 1rem;
+  --font-size-300: 1.25rem;
+  --font-size-400: 1.75rem;
+  --font-size-500: 2.5rem;
+  --line-height-tight: 1.15;
+  --line-height-heading: 1.25;
+  --line-height-base: 1.65;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+
+  --shadow-sm: 0 1px 2px rgb(16 24 40 / 8%);
+  --shadow-md: 0 10px 24px rgb(16 24 40 / 8%);
+
+  --container-max: 72rem;
+  --grid-min: 17rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-family: var(--font-sans);
+  font-size: var(--font-size-200);
+  line-height: var(--line-height-base);
+  letter-spacing: 0.005em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 140ms ease;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--color-accent-hover);
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--color-text);
+  line-height: var(--line-height-heading);
+  letter-spacing: -0.015em;
+}
+
+h1 {
+  font-size: clamp(2rem, 3.4vw, var(--font-size-500));
+  font-weight: 680;
+  margin-bottom: var(--space-3);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 2.5vw, var(--font-size-400));
+  font-weight: 640;
+  margin-bottom: var(--space-2);
+}
+
+h3 {
+  font-size: clamp(1.125rem, 1.7vw, var(--font-size-300));
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+h4 {
+  font-size: var(--font-size-200);
+  font-weight: 600;
+}
+
+p {
+  color: var(--color-text-muted);
+  line-height: var(--line-height-base);
+  max-width: 68ch;
+}
+
+strong,
+b {
+  color: var(--color-text);
+}
+
+small {
+  color: var(--color-text-soft);
+  font-size: var(--font-size-100);
+}
+
+ul,
+ol {
+  padding-left: 1.2em;
+  color: var(--color-text-muted);
+}
+
+li + li {
+  margin-top: var(--space-1);
+}
