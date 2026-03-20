@@ -8,12 +8,14 @@ permalink: /submission/
   <p class="meta">Student Guide</p>
   <h1>Submit Your Project</h1>
   <p class="meta">Follow these steps to submit cleanly and avoid delays.</p>
+  <p><a class="button-link" href="{{ '/submit.html' | relative_url }}">Open Submission Helper Form</a></p>
 </section>
 
 <section class="container section stack">
   <h2>Before You Start</h2>
   <ul>
     <li><strong>Pick one project type:</strong> Research, Thesis, Dissertation, Capstone, Project, or Recording.</li>
+    <li><strong>Add your course if available:</strong> for example, MUE410.</li>
     <li><strong>Prepare one thumbnail image:</strong> JPG or PNG, about <strong>1600 × 900 px</strong> (16:9), under 2 MB.</li>
     <li><strong>Have your links ready:</strong> repository link and optional demo link.</li>
   </ul>
@@ -30,7 +32,7 @@ permalink: /submission/
     <li>
       <strong>Create your project file</strong><br>
       In your fork, go to <code>_projects</code> and create a new file using the template:<br>
-      <a href="https://github.com/MUEatTheU/music-engineering-portfolio/new/main/_projects?filename=your-project.md&value=---%0Alayout%3A%20project%0Atitle%3A%20%22Project%20Title%22%0Astudent_name%3A%20%22Your%20Name%22%0Astudent_slug%3A%20%22your-name%22%0Acategory%3A%20%22Project%22%0Atags%3A%0A%20%20-%20audio%0A%20%20-%20recording%0Ashort_blurb%3A%20%22One%20sentence%20summary.%22%0Athumbnail_image%3A%20%22%2Fassets%2Fimages%2Fprojects%2Fyour-image.jpg%22%0Afull_description%3A%20%22Describe%20your%20project%20in%20detail.%22%0Arepo_url%3A%20%22https%3A%2F%2Fgithub.com%2Fyour-username%2Fyour-project%22%0Ademo_url%3A%20%22%22%0Afeatured%3A%20false%0Apublish_date%3A%202026-03-20%0A---%0A" target="_blank" rel="noopener noreferrer">Create new project file</a>
+      <a href="https://github.com/MUEatTheU/music-engineering-portfolio/new/main/_projects?filename=your-project.md&value=---%0Alayout%3A%20project%0Atitle%3A%20%22Project%20Title%22%0Astudent_name%3A%20%22Your%20Name%22%0Astudent_slug%3A%20%22your-name%22%0Acategory%3A%20%22Project%22%0Atags%3A%0A%20%20-%20audio%0A%20%20-%20recording%0Acourse%3A%20%22MUE410%22%0Ashort_blurb%3A%20%22One%20sentence%20summary.%22%0Athumbnail_image%3A%20%22%2Fassets%2Fimages%2Fprojects%2Fyour-image.jpg%22%0Afull_description%3A%20%22Describe%20your%20project%20in%20detail.%22%0Arepo_url%3A%20%22https%3A%2F%2Fgithub.com%2Fyour-username%2Fyour-project%22%0Ademo_url%3A%20%22%22%0Afeatured%3A%20false%0Apublish_date%3A%202026-03-20%0A---%0A" target="_blank" rel="noopener noreferrer">Create new project file</a>
     </li>
     <li>
       <strong>Upload your image</strong><br>
@@ -50,6 +52,7 @@ permalink: /submission/
   <ul>
     <li>All required fields are filled in your project file.</li>
     <li>Project type is one of the listed options.</li>
+    <li>Course is filled in if your project belongs to a course.</li>
     <li>Thumbnail image path matches your uploaded file.</li>
     <li>Repository link opens correctly.</li>
     <li>Short blurb is one sentence and full description is complete.</li>

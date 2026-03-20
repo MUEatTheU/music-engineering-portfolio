@@ -25,6 +25,9 @@ tags:
 # REQUIRED: One short sentence for the homepage card
 short_blurb: "A real-time audio effect that cleans noisy recordings."
 
+# OPTIONAL: Course name/number (example: MUE410)
+course: "MUE410"
+
 # REQUIRED: Path to your image in assets/images/projects/
 # Recommended image: JPG/PNG, 16:9 (about 1600x900), under 2 MB
 thumbnail_image: "/assets/images/projects/my-awesome-audio-project.jpg"

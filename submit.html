@@ -11,7 +11,32 @@
     <section class="stack">
       <p class="meta">Submission Helper</p>
       <h1>Project File Generator</h1>
-      <p class="meta">Fill out the form, then copy the generated filename and markdown into GitHub.</p>
+      <p class="meta">Use this page to prepare your project, generate markdown, and submit everything to GitHub.</p>
+      <p class="meta">Generate your markdown below, then copy and paste it into the GitHub “Create new project file” page.</p>
+    </section>
+
+    <section class="card">
+      <div class="card-body">
+        <h2>Quick Submission Steps</h2>
+        <ol>
+          <li>
+            Fork the repository:
+            <a href="https://github.com/MUEatTheU/music-engineering-portfolio" target="_blank" rel="noopener noreferrer">github.com/MUEatTheU/music-engineering-portfolio</a>
+          </li>
+          <li>
+            Create a new project file in <code>_projects</code>:
+            <a href="https://github.com/MUEatTheU/music-engineering-portfolio/new/main/_projects?filename=your-project.md&value=---%0Alayout%3A%20project%0Atitle%3A%20%22Project%20Title%22%0Astudent_name%3A%20%22Your%20Name%22%0Astudent_slug%3A%20%22your-name%22%0Acategory%3A%20%22Project%22%0Atags%3A%0A%20%20-%20audio%0A%20%20-%20recording%0Acourse%3A%20%22MUE410%22%0Ashort_blurb%3A%20%22One%20sentence%20summary.%22%0Athumbnail_image%3A%20%22%2Fassets%2Fimages%2Fprojects%2Fyour-image.jpg%22%0Afull_description%3A%20%22Describe%20your%20project%20in%20detail.%22%0Arepo_url%3A%20%22https%3A%2F%2Fgithub.com%2Fyour-username%2Fyour-project%22%0Ademo_url%3A%20%22%22%0Afeatured%3A%20false%0Apublish_date%3A%202026-03-20%0A---%0A" target="_blank" rel="noopener noreferrer">Create new project file</a>
+          </li>
+          <li>
+            Upload your thumbnail image to:
+            <a href="https://github.com/MUEatTheU/music-engineering-portfolio/upload/main/assets/images/projects" target="_blank" rel="noopener noreferrer">assets/images/projects</a>
+          </li>
+          <li>
+            Open a pull request:
+            <a href="https://github.com/MUEatTheU/music-engineering-portfolio/compare" target="_blank" rel="noopener noreferrer">Open PR page</a>
+          </li>
+        </ol>
+      </div>
     </section>
 
     <section class="card">
@@ -38,6 +63,9 @@
           </label>
           <label>Tags (comma separated)
             <input id="tags" type="text" placeholder="dsp, audio, effects">
+          </label>
+          <label>Course (optional)
+            <input id="course" type="text" placeholder="MUE410">
           </label>
           <label>Publish Date
             <input id="publish_date" type="date">
@@ -96,6 +124,7 @@
         student_slug: document.getElementById('student_slug'),
         category: document.getElementById('category'),
         tags: document.getElementById('tags'),
+        course: document.getElementById('course'),
         short_blurb: document.getElementById('short_blurb'),
         thumbnail_image: document.getElementById('thumbnail_image'),
         full_description: document.getElementById('full_description'),
@@ -145,6 +174,7 @@
         var studentSlug = fields.student_slug.value.trim() || slugify(studentName) || 'student-name';
         var category = fields.category.value.trim() || 'Project';
         var tags = toTagLines(fields.tags.value);
+        var course = fields.course.value.trim() || '';
         var shortBlurb = fields.short_blurb.value.trim() || 'One sentence summary.';
         var thumbnail = fields.thumbnail_image.value.trim() || '/assets/images/projects/your-image.jpg';
         var fullDescription = fields.full_description.value.trim() || 'Describe your project in detail.';
@@ -165,6 +195,7 @@
           'category: ' + yamlQuote(category),
           'tags:',
           tags.join('\n'),
+          'course: ' + yamlQuote(course),
           'short_blurb: ' + yamlQuote(shortBlurb),
           'thumbnail_image: ' + yamlQuote(thumbnail),
           'full_description: ' + yamlQuote(fullDescription),
