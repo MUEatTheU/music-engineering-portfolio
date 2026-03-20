@@ -63,35 +63,33 @@ title: Music Engineering Portfolio
 
   <div class="grid" id="projects-grid">
   {% for project in sorted %}
-    {% unless project.featured %}
-      {% assign project_tags = project.tags | default: "" | join: "," | downcase %}
-      <div class="card" data-tags="{{ project_tags }}">
-        <a class="card-media" href="{{ project.url | relative_url }}">
-          <img src="{{ project.thumbnail_image | relative_url }}" alt="{{ project.title | escape }}">
-        </a>
-        <div class="card-body">
-          <h3 class="card-title">
-            <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
-          </h3>
+    {% assign project_tags = project.tags | default: "" | join: "," | downcase %}
+    <div class="card" data-tags="{{ project_tags }}">
+      <a class="card-media" href="{{ project.url | relative_url }}">
+        <img src="{{ project.thumbnail_image | relative_url }}" alt="{{ project.title | escape }}">
+      </a>
+      <div class="card-body">
+        <h3 class="card-title">
+          <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
+        </h3>
+        <p class="meta">
+          <a href="{{ '/students/' | append: project.student_slug | relative_url }}">{{ project.student_name }}</a>
+          •
+          {% assign cat_slug = project.category | slugify %}
+          Project Type:
+          <a href="{{ '/categories/' | append: cat_slug | relative_url }}">{{ project.category }}</a>
+        </p>
+        <p class="card-description">{{ project.short_blurb }}</p>
+        {% if project.tags %}
           <p class="meta">
-            <a href="{{ '/students/' | append: project.student_slug | relative_url }}">{{ project.student_name }}</a>
-            •
-            {% assign cat_slug = project.category | slugify %}
-            Project Type:
-            <a href="{{ '/categories/' | append: cat_slug | relative_url }}">{{ project.category }}</a>
+            Tags:
+            {% for tag in project.tags %}
+              <span>{{ tag }}</span>{% unless forloop.last %}, {% endunless %}
+            {% endfor %}
           </p>
-          <p class="card-description">{{ project.short_blurb }}</p>
-          {% if project.tags %}
-            <p class="meta">
-              Tags:
-              {% for tag in project.tags %}
-                <span>{{ tag }}</span>{% unless forloop.last %}, {% endunless %}
-              {% endfor %}
-            </p>
-          {% endif %}
-        </div>
+        {% endif %}
       </div>
-    {% endunless %}
+    </div>
   {% endfor %}
   </div>
 </section>
