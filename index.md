@@ -8,7 +8,8 @@ title: Music Engineering Portfolio
 ## Latest Projects
 
 <ul>
-{% for project in site.projects %}
+{% assign sorted = site.projects | sort: "publish_date" | reverse %}
+{% for project in sorted %}
   <li>
     <a href="{{ project.url }}">
       <strong>{{ project.title }}</strong>
@@ -18,3 +19,5 @@ title: Music Engineering Portfolio
   </li>
 {% endfor %}
 </ul>
+
+
