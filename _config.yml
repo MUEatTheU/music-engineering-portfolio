@@ -1,7 +1,7 @@
-title: Music Engineering Portfolio
-theme: minima
-
 collections:
   projects:
     output: true
     permalink: /projects/:name/
+  authors:
+    output: true
+    permalink: /students/:name/
