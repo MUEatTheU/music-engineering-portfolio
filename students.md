@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Authors
+title: Students
 permalink: /students/
 ---
 
-<h1>Authors</h1>
+<h1>Students</h1>
 
 <ul>
 {% assign sorted_projects = site.projects | sort: "student_name" %}

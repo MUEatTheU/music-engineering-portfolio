@@ -9,13 +9,12 @@ module Jekyll
       projects = site.collections.fetch("projects", nil)&.docs || []
       return if projects.empty?
 
-      author_slugs = (site.collections.fetch("authors", nil)&.docs || []).map { |doc| doc.data["slug"].to_s.strip }
       grouped = {}
 
       projects.each do |project|
         slug = project.data["student_slug"].to_s.strip
         name = project.data["student_name"].to_s.strip
-        next if slug.empty? || author_slugs.include?(slug)
+        next if slug.empty?
 
         grouped[slug] ||= { "name" => (name.empty? ? titleize_slug(slug) : name), "projects" => [] }
         grouped[slug]["projects"] << project
@@ -84,7 +83,7 @@ module Jekyll
       end
 
       lines << "  </div>"
-      lines << "  <p class=\"meta\"><a href=\"#{with_base('/students/')}\">← Back to Authors</a> • <a href=\"#{with_base('/')}\">Home</a></p>"
+      lines << "  <p class=\"meta\"><a href=\"#{with_base('/students/')}\">← Back to Students</a> • <a href=\"#{with_base('/')}\">Home</a></p>"
       lines << "</section>"
       lines.join("\n")
     end

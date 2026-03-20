@@ -1,7 +1,7 @@
+safe: false
+plugins_dir: _plugins
+
 collections:
   projects:
     output: true
     permalink: /projects/:name/
-  authors:
-    output: true
-    permalink: /students/:name/
