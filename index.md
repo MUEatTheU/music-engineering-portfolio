@@ -20,10 +20,10 @@ title: Music Engineering Portfolio
       • 
   {% assign cat_slug = project.category | slugify %}
 
-<a href="{{ '/categories/' | append: cat_slug | append: '/' | relative_url }}">
+<a href="{{ '/categories/' | append: cat_slug | relative_url }}">
   {{ project.category }}
 </a>
-<p>DEBUG: {{ '/categories/' | append: cat_slug | append: '/' | relative_url }}</p>
+
 </p>
     <p>{{ project.short_blurb }}</p>
   </div>
