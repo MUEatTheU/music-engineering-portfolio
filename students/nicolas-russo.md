@@ -1,0 +1,44 @@
+---
+layout: default
+title: "Nicolas Russo"
+permalink: /students/nicolas-russo
+student_name: "Nicolas Russo"
+student_slug: "nicolas-russo"
+---
+
+<section class="stack">
+  <p class="meta">Student Profile</p>
+  <h1>{{ page.student_name }}</h1>
+</section>
+
+{% assign student_projects = site.projects | where: "student_slug", page.student_slug | sort: "publish_date" | reverse %}
+
+<section class="section stack">
+  <h2>Projects</h2>
+  <div class="grid">
+  {% for project in student_projects %}
+    <div class="card">
+      <a class="card-media" href="{{ project.url | relative_url }}">
+        <img src="{{ project.thumbnail_image | relative_url }}" alt="{{ project.title | escape }}">
+      </a>
+      <div class="card-body">
+        <h3 class="card-title">
+          <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
+        </h3>
+        <p class="meta">
+          {% assign cat_slug = project.category | slugify %}
+          Project Type:
+          <a href="{{ '/categories/' | append: cat_slug | relative_url }}">{{ project.category }}</a>
+        </p>
+        <p class="card-description">{{ project.short_blurb }}</p>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+
+  {% if student_projects == empty %}
+    <p class="meta">No projects available for this student yet.</p>
+  {% endif %}
+
+  <p class="meta"><a href="{{ '/students' | relative_url }}">← Back to Students</a> • <a href="{{ '/' | relative_url }}">Home</a></p>
+</section>
