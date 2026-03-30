@@ -79,6 +79,19 @@ hr {
   max-width: 64ch;
 }
 
+.rich-description p + p {
+  margin-top: var(--space-3);
+}
+
+.rich-description img {
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-muted);
+  margin-top: var(--space-2);
+}
+
 .card .meta {
   font-size: 0.8rem;
   line-height: 1.4;

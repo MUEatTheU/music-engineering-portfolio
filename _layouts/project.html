@@ -32,7 +32,11 @@ layout: default
   <article class="card">
     <div class="card-body">
       <h2>Description</h2>
-      <p class="card-description">{{ page.full_description }}</p>
+      {% assign asset_prefix = site.baseurl | append: '/assets/' %}
+      {% assign rendered_description = page.full_description | replace: '/assets/', asset_prefix %}
+      <div class="card-description rich-description">
+        {{ rendered_description | markdownify }}
+      </div>
     </div>
   </article>
 
