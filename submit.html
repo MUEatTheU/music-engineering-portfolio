@@ -54,17 +54,21 @@
     <section class="card">
       <div class="card-body">
         <h2>Project Details Form</h2>
-        <div class="grid">
-          <label>Project Title
+        <div class="form-grid">
+          <label class="form-field">
+            <span>Project Title</span>
             <input id="title" type="text" placeholder="My Awesome Audio Project">
           </label>
-          <label>Student Name
+          <label class="form-field">
+            <span>Student Name</span>
             <input id="student_name" type="text" placeholder="Jane Smith">
           </label>
-          <label>Student Slug
+          <label class="form-field">
+            <span>Student Slug</span>
             <input id="student_slug" type="text" placeholder="jane-smith">
           </label>
-          <label>Category
+          <label class="form-field">
+            <span>Category</span>
             <select id="category">
               <option>Research</option>
               <option>Recording</option>
@@ -73,35 +77,40 @@
               <option>Demo</option>
             </select>
           </label>
-          <label>Tags (comma separated)
+          <label class="form-field">
+            <span>Tags (comma separated)</span>
             <input id="tags" type="text" placeholder="dsp, audio, effects">
           </label>
-          <label>Course (optional)
+          <label class="form-field">
+            <span>Course (optional)</span>
             <input id="course" type="text" placeholder="MUE410">
           </label>
-          <label>Publish Date
+          <label class="form-field">
+            <span>Publish Date</span>
             <input id="publish_date" type="date">
           </label>
-        </div>
-
-        <div class="stack mt-4">
-          <label>Short Blurb
+          <label class="form-field form-field-full">
+            <span>Short Blurb</span>
             <input id="short_blurb" type="text" placeholder="One sentence summary.">
           </label>
-          <label>Thumbnail Image Path
+          <label class="form-field form-field-full">
+            <span>Thumbnail Image Path</span>
             <input id="thumbnail_image" type="text" placeholder="/assets/images/projects/my-project.jpg">
           </label>
-          <label>Repository URL
+          <label class="form-field">
+            <span>Repository URL</span>
             <input id="repo_url" type="url" placeholder="https://github.com/your-username/your-project">
           </label>
-          <label>Demo URL (optional)
+          <label class="form-field">
+            <span>Demo URL (optional)</span>
             <input id="demo_url" type="url" placeholder="https://youtu.be/your-demo-video">
           </label>
-          <label>Full Description
+          <label class="form-field form-field-full">
+            <span>Full Description</span>
             <textarea id="full_description" rows="6" placeholder="Describe your project in detail."></textarea>
           </label>
-          <p class="meta">To embed an image in your description, use Markdown like <code>![Plugin UI](/assets/images/projects/my-plugin-ui.png)</code>.</p>
-          <p class="meta">Upload every image you reference to <code>assets/images/projects/</code> first, then use that exact path in your description.</p>
+          <p class="meta form-help">To embed an image in your description, use Markdown like <code>![Plugin UI](/assets/images/projects/my-plugin-ui.png)</code>.</p>
+          <p class="meta form-help">Upload every image you reference to <code>assets/images/projects/</code> first, then use that exact path in your description.</p>
         </div>
 
         <div class="button-row mt-4">
