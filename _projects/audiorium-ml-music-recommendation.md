@@ -25,11 +25,8 @@ full_description: "# Audiorium
 > A next-generation, culturally inclusive music recommendation system that surfaces music based on meaning — not popularity, streams, or label affiliation.
 
 **Author:** Anish Ghosh (`axg1652@miami.edu`)  
-**Collaborator:** Yestin Arvin Gochuico  
 **Affiliation:** Department of Music Engineering & Department of Interactive Media, University of Miami  
 **Course:** Design with AI — Fall 2025
-
----
 
 ## Table of Contents
 - [Introduction](#introduction)
@@ -44,8 +41,6 @@ full_description: "# Audiorium
 - [Setup & Usage](#setup--usage)
 - [References](#references)
 
----
-
 ## Introduction
 
 **Audiorium** is named after a fusion of *audio* + *museum / terrarium / aquarium* — a space where users cultivate their own ecosystem of music. The application was built around one core idea: music recommendation should be driven by sonic and semantic meaning, not by engagement metrics, streaming counts, or label affiliation.
@@ -55,16 +50,12 @@ full_description: "# Audiorium
 
 **Target users:** Music lovers who want to go beyond the mainstream and genuinely diversify what they listen to.
 
----
-
 ## The Problem
 
 With the emergence of music streaming, recommendation algorithms have become a primary force in culture curation and global discovery. Current platforms suffer from two compounding issues:
 
 - **Feature Translation Gap:** Audio features used in mainstream algorithms struggle to translate inclusively across genres and cultures.
 - **Recommendation Homogenization:** Algorithmic optimization for engagement creates echo chambers of western pop dominance — rewarding the familiar and profitable rather than delivering transformative experiences.
-
----
 
 ## Dataset
 
@@ -76,8 +67,6 @@ With the emergence of music streaming, recommendation algorithms have become a p
 | Dataset sizes | Small (8k tracks) → Full (106k tracks) |
 | Precomputed features | MFCCs, Chroma, and more |
 | License | Creative Commons — open for raw audio research |
-
----
 
 ## Methods
 
@@ -92,8 +81,6 @@ Audiorium combines three complementary AI capabilities:
 Additional design decisions:
 - Inspired by Spotify's **Text2Track** and **MusicMakerHub**
 - **Rule-Based Ordering** adds slight randomization to top results, ensuring equitable distribution of diverse content over pure similarity ranking
-
----
 
 ## System Architecture
 
@@ -118,8 +105,6 @@ User Selects a Song  →  CLAP audio-to-audio KNN
 ```
 
 **FAISS Index:** All audio is pre-embedded using CLAP and stored in a FAISS `IndexFlatIP` (cosine similarity via L2-normalized inner product) for fast nearest-neighbor retrieval at scale.
-
----
 
 ## User Interface
 
@@ -146,7 +131,6 @@ The GUI is a hybrid of a **text-bar interface** (like ChatGPT) and a **standard 
 |:---:|:---:|
 | ![Explore](/assets/images/projects/audiorium_explore.png) | ![Library](/assets/images/projects/audiorium_library.png) |
 
----
 
 ## Related Work
 
@@ -160,8 +144,6 @@ The GUI is a hybrid of a **text-bar interface** (like ChatGPT) and a **standard 
 | Text2Tracks (Spotify Research) | Prompt-based music recommendations with generative retrieval |
 | How Bad Is Your Streaming Music? | Spotify API + AI storytelling / taste critique |
 
----
-
 ## Evaluation
 
 ### Methodology
@@ -169,8 +151,6 @@ The GUI is a hybrid of a **text-bar interface** (like ChatGPT) and a **standard 
 ![Evaluation Design](/assets/images/projects/audieval.png)
 
 Recommendations were collected from Audiorium, Spotify, and Apple Music, then evaluated across two dimensions — algorithmic (1,000 songs) and via user study (10 songs).
-
----
 
 ### Quantitative: Homogeneity Score
 
@@ -183,8 +163,6 @@ Measures the proportion of **major-label artists** in the top-100 recommendation
 *Table 1: Homogeneity scores for 1,000 recommended songs per algorithm*
 
 Audiorium's score of **0.28** is the closest to the 0.3 target, confirming the algorithm is effectively label-blind and does not reward streaming popularity or label affiliation.
-
----
 
 ### Qualitative: User Study (Likert 1–5)
 
@@ -199,16 +177,12 @@ Participants listened to recommendations from each platform and rated them on di
 
 Audiorium achieved the **highest diversity score** by a significant margin. The lower likability score is attributed to a known confounding variable: Audiorium's recommendations come from an open-source dataset, while Spotify and Apple Music surface commercially released and professionally produced music that participants are more predisposed to enjoy.
 
----
-
 ## Future Work
 
 - Retrain on the **Free Music Archive Large Dataset** (106k tracks) for broader coverage
 - **Longitudinal studies** comparing commercial algorithms to Audiorium over days to weeks of real use
 - Quantify the performance of the **image-to-audio recommendation** capability independently
 - Explore integration with real-world music catalogs to reduce the open-source dataset confound in likability evaluation
-
----
 
 ## Setup & Usage
 
@@ -238,8 +212,6 @@ recommend_by_text(\"aggressive 808 trap with dark strings\")
 # Audio-to-audio similarity
 recommend_by_audio(\"mp3dataset/Plain.mp3\")
 ```
-
----
 
 ## References
 
