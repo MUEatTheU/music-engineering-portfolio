@@ -1,6 +1,7 @@
 name: Project submission
 description: Submit a student project for the Music Engineering Portfolio.
 title: "Project submission: "
+labels: ["project-submission"]
 body:
   - type: markdown
     attributes:

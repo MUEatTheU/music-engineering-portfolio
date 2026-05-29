@@ -1,0 +1,61 @@
+name: Create Project From Issue
+
+on:
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: "Project submission issue number"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  create-project:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+
+      - name: Fetch issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
+        run: gh issue view "$ISSUE_NUMBER" --json number,title,body,url > issue.json
+
+      - name: Create project file
+        run: ruby scripts/create_project_from_issue.rb issue.json
+
+      - name: Create review pull request
+        id: create-pr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          branch: automation/project-from-issue-${{ inputs.issue_number }}
+          title: "Add project from issue #${{ inputs.issue_number }}"
+          commit-message: "Add project from submission issue #${{ inputs.issue_number }}"
+          body: |
+            Generated from project submission issue #${{ inputs.issue_number }}.
+
+            Maintainer checklist:
+            - Download attached images from the issue.
+            - Add images to `assets/images/projects/`.
+            - Confirm `thumbnail_image` matches the thumbnail filename.
+            - Add inline image Markdown to `full_description` if needed.
+            - Preview the project page before merging.
+
+      - name: Comment on issue
+        if: steps.create-pr.outputs.pull-request-url != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
+          PR_URL: ${{ steps.create-pr.outputs.pull-request-url }}
+        run: |
+          gh issue comment "$ISSUE_NUMBER" --body "Created a maintainer review PR: $PR_URL"
