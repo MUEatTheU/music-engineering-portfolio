@@ -11,14 +11,13 @@ on:
 permissions:
   contents: write
   issues: write
-  pull-requests: write
 
 jobs:
   create-project:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -34,28 +33,43 @@ jobs:
       - name: Create project file
         run: ruby scripts/create_project_from_issue.rb issue.json
 
-      - name: Create review pull request
-        id: create-pr
-        uses: peter-evans/create-pull-request@v6
-        with:
-          branch: automation/project-from-issue-${{ inputs.issue_number }}
-          title: "Add project from issue #${{ inputs.issue_number }}"
-          commit-message: "Add project from submission issue #${{ inputs.issue_number }}"
-          body: |
-            Generated from project submission issue #${{ inputs.issue_number }}.
-
-            Maintainer checklist:
-            - Download attached images from the issue.
-            - Add images to `assets/images/projects/`.
-            - Confirm `thumbnail_image` matches the thumbnail filename.
-            - Add inline image Markdown to `full_description` if needed.
-            - Preview the project page before merging.
+      - name: Push review branch
+        id: branch
+        env:
+          ISSUE_NUMBER: ${{ inputs.issue_number }}
+          RUN_ID: ${{ github.run_id }}
+        run: |
+          BRANCH="automation/project-from-issue-${ISSUE_NUMBER}-${RUN_ID}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$BRANCH"
+          git add _projects/*.md
+          git diff --cached --quiet && {
+            echo "No project file changes were generated."
+            exit 1
+          }
+          git commit -m "Add project from submission issue #${ISSUE_NUMBER}"
+          git push origin "$BRANCH"
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+          echo "compare_url=https://github.com/${GITHUB_REPOSITORY}/compare/main...${BRANCH}?quick_pull=1" >> "$GITHUB_OUTPUT"
 
       - name: Comment on issue
-        if: steps.create-pr.outputs.pull-request-url != ''
         env:
           GH_TOKEN: ${{ github.token }}
           ISSUE_NUMBER: ${{ inputs.issue_number }}
-          PR_URL: ${{ steps.create-pr.outputs.pull-request-url }}
+          COMPARE_URL: ${{ steps.branch.outputs.compare_url }}
         run: |
-          gh issue comment "$ISSUE_NUMBER" --body "Created a maintainer review PR: $PR_URL"
+          cat > comment.md <<EOF
+          Created a review branch for this submission.
+
+          Open the compare page to create a pull request:
+          $COMPARE_URL
+
+          Maintainer checklist:
+          - Download attached images from this issue.
+          - Add images to \`assets/images/projects/\`.
+          - Confirm \`thumbnail_image\` matches the thumbnail filename.
+          - Add inline image Markdown to \`full_description\` if needed.
+          - Preview the project page before merging.
+          EOF
+          gh issue comment "$ISSUE_NUMBER" --body-file comment.md
