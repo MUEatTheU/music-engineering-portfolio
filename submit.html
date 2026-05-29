@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Submit Project</title>
+  <title>Submit Project - Music Engineering Portfolio</title>
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
 <body>
@@ -18,260 +18,74 @@
     </div>
   </header>
 
-  <main class="container stack">
-    <section class="stack">
+  <main class="container stack submit-page">
+    <section class="submit-hero">
       <p class="meta">Student Submission</p>
       <h1>Submit Your Project</h1>
-      <p class="meta">This page walks you through the entire submission process: prepare your project details, generate your markdown, upload your images, create your project file, and open your pull request.</p>
+      <p>
+        The easiest way to submit is now a GitHub form. You do not need to fork the repo,
+        create files by hand, or open a pull request.
+      </p>
+      <p>
+        Fill out the form, attach your images, and the portfolio maintainer will review and
+        add the project to the site.
+      </p>
+      <p>
+        <a class="button-link submit-primary-action" href="https://github.com/MUEatTheU/music-engineering-portfolio/issues/new?template=project_submission.yml" target="_blank" rel="noopener noreferrer">Open Project Submission Form</a>
+      </p>
     </section>
 
-    <section class="card">
-      <div class="card-body">
-        <h2>Step 1: Before You Start</h2>
-        <ul>
-          <li>Pick one project type: Research, Recording, Project, Capstone, or Demo.</li>
-          <li>Add your course if your project belongs to one, for example `MUE410`.</li>
-          <li>Prepare all project imagery, including your thumbnail, screenshots, diagrams, and any images you want to show inside the full description.</li>
-          <li>Recommended image size: JPG or PNG, about 1600 x 900 px for thumbnails, under 2 MB when possible.</li>
-          <li>Have your repository link ready, plus an optional demo link.</li>
-        </ul>
-      </div>
+    <section class="submit-steps">
+      <h2>Three Steps</h2>
+      <ol class="submit-step-list">
+        <li>
+          <strong>Open the form.</strong>
+          Use the button above and sign in to GitHub if asked.
+        </li>
+        <li>
+          <strong>Answer the questions.</strong>
+          Add your name, project title, course, project type, links, tags, short blurb, and full description.
+        </li>
+        <li>
+          <strong>Attach images in the form.</strong>
+          Drag your thumbnail, screenshots, diagrams, or demo images into the image section before submitting.
+        </li>
+      </ol>
     </section>
 
-    <section class="card">
-      <div class="card-body">
-        <h2>Step 2: Fill Out Your Project Details</h2>
-        <ol>
-          <li>
-            Fork the repository:
-            <a href="https://github.com/MUEatTheU/music-engineering-portfolio" target="_blank" rel="noopener noreferrer">github.com/MUEatTheU/music-engineering-portfolio</a>
-          </li>
-        </ol>
-        <p class="meta">Fill out the form below and click <strong>Generate Markdown</strong>. The generated output is what you will paste into your new file on GitHub.</p>
-      </div>
+    <section class="submit-note">
+      <h2>Image Tips</h2>
+      <p>
+        Upload all images you want included, not just the thumbnail. JPG and PNG files work best.
+        A 16:9 thumbnail around 1600 x 900 px is ideal.
+      </p>
+      <p>
+        If you want an image inside your description, write a note like:
+      </p>
+      <pre><code>Place screenshot-1.png after the paragraph about the interface.</code></pre>
+      <p>
+        You can also use Markdown if you already know the final image path:
+      </p>
+      <pre><code>![Plugin UI](/assets/images/projects/plugin-ui.png)</code></pre>
     </section>
 
-    <section class="card">
-      <div class="card-body">
-        <h2>Project Details Form</h2>
-        <div class="form-grid">
-          <label class="form-field">
-            <span>Project Title</span>
-            <input id="title" type="text" placeholder="My Awesome Audio Project">
-          </label>
-          <label class="form-field">
-            <span>Student Name</span>
-            <input id="student_name" type="text" placeholder="Jane Smith">
-          </label>
-          <label class="form-field">
-            <span>Student Slug</span>
-            <input id="student_slug" type="text" placeholder="jane-smith">
-          </label>
-          <label class="form-field">
-            <span>Category</span>
-            <select id="category">
-              <option>Research</option>
-              <option>Recording</option>
-              <option>Project</option>
-              <option>Capstone</option>
-              <option>Demo</option>
-            </select>
-          </label>
-          <label class="form-field">
-            <span>Tags (comma separated)</span>
-            <input id="tags" type="text" placeholder="dsp, audio, effects">
-          </label>
-          <label class="form-field">
-            <span>Course (optional)</span>
-            <input id="course" type="text" placeholder="MUE410">
-          </label>
-          <label class="form-field">
-            <span>Publish Date</span>
-            <input id="publish_date" type="date">
-          </label>
-          <label class="form-field form-field-full">
-            <span>Short Blurb</span>
-            <input id="short_blurb" type="text" placeholder="One sentence summary.">
-          </label>
-          <label class="form-field form-field-full">
-            <span>Thumbnail Image Path</span>
-            <input id="thumbnail_image" type="text" placeholder="/assets/images/projects/my-project.jpg">
-          </label>
-          <label class="form-field">
-            <span>Repository URL</span>
-            <input id="repo_url" type="url" placeholder="https://github.com/your-username/your-project">
-          </label>
-          <label class="form-field">
-            <span>Demo URL (optional)</span>
-            <input id="demo_url" type="url" placeholder="https://youtu.be/your-demo-video">
-          </label>
-          <label class="form-field form-field-full">
-            <span>Full Description</span>
-            <textarea id="full_description" rows="6" placeholder="Describe your project in detail."></textarea>
-          </label>
-          <p class="meta form-help">To embed an image in your description, use Markdown like <code>![Plugin UI](/assets/images/projects/my-plugin-ui.png)</code>.</p>
-          <p class="meta form-help">Upload every image you reference to <code>assets/images/projects/</code> first, then use that exact path in your description.</p>
-        </div>
-
-        <div class="button-row mt-4">
-          <button id="generate" class="button-link" type="button">Generate Markdown</button>
-          <button id="copy_filename" class="button-link" type="button">Copy Filename</button>
-          <button id="copy_markdown" class="button-link" type="button">Copy Markdown</button>
-        </div>
-      </div>
+    <section class="submit-note">
+      <h2>Project Types</h2>
+      <p>Choose one: Research, Recording, Project, Capstone, or Demo.</p>
     </section>
 
-    <section class="card">
-      <div class="card-body">
-        <h2>Step 3: Generate Your Markdown</h2>
-        <p class="meta">Use the filename and markdown below when creating your project file on GitHub.</p>
-        <p class="meta">Filename:</p>
-        <pre id="filename_out">your-project.md</pre>
-
-        <p class="meta">Markdown content:</p>
-        <textarea id="markdown_out" rows="18" readonly></textarea>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="card-body">
-        <h2>Step 4: Upload All Project Images</h2>
-        <p class="meta">Upload your thumbnail plus any screenshots, diagrams, or other images used in your full description.</p>
-        <p><a class="button-link" href="https://github.com/MUEatTheU/music-engineering-portfolio/upload/main/assets/images/projects" target="_blank" rel="noopener noreferrer">Upload images to assets/images/projects</a></p>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="card-body">
-        <h2>Step 5: Create Your Project File</h2>
-        <p class="meta">Open the GitHub file creator, use the generated filename, and paste in the generated markdown from this page.</p>
-        <p><a class="button-link" href="https://github.com/MUEatTheU/music-engineering-portfolio/new/main/_projects?filename=your-project.md&value=---%0Alayout%3A%20project%0Atitle%3A%20%22Project%20Title%22%0Astudent_name%3A%20%22Your%20Name%22%0Astudent_slug%3A%20%22your-name%22%0Acategory%3A%20%22Project%22%0Atags%3A%0A%20%20-%20audio%0A%20%20-%20recording%0Acourse%3A%20%22MUE410%22%0Ashort_blurb%3A%20%22One%20sentence%20summary.%22%0Athumbnail_image%3A%20%22%2Fassets%2Fimages%2Fprojects%2Fyour-image.jpg%22%0Afull_description%3A%20%22Describe%20your%20project%20in%20detail.%22%0Arepo_url%3A%20%22https%3A%2F%2Fgithub.com%2Fyour-username%2Fyour-project%22%0Ademo_url%3A%20%22%22%0Apublish_date%3A%202026-03-20%0A---%0A" target="_blank" rel="noopener noreferrer">Create new project file in _projects</a></p>
-      </div>
-    </section>
-
-    <section class="card">
-      <div class="card-body">
-        <h2>Step 6: Open Your Pull Request</h2>
-        <ul>
-          <li>Check that your project file, thumbnail, and any embedded images are all in your fork.</li>
-          <li>Make sure your image paths match exactly.</li>
-          <li>Open your pull request when everything looks right.</li>
-        </ul>
-        <p><a class="button-link" href="https://github.com/MUEatTheU/music-engineering-portfolio/compare" target="_blank" rel="noopener noreferrer">Open pull request page</a></p>
+    <section class="submit-note submit-advanced">
+      <h2>Advanced: Pull Request Submission</h2>
+      <p>
+        If you are comfortable with GitHub pull requests, you can still submit the old way.
+        Most students should use the form above.
+      </p>
+      <div class="button-row">
+        <a class="button-link" href="https://github.com/MUEatTheU/music-engineering-portfolio/new/main/_projects" target="_blank" rel="noopener noreferrer">Create Project File</a>
+        <a class="button-link" href="https://github.com/MUEatTheU/music-engineering-portfolio/upload/main/assets/images/projects" target="_blank" rel="noopener noreferrer">Upload Images</a>
+        <a class="button-link" href="https://github.com/MUEatTheU/music-engineering-portfolio/compare" target="_blank" rel="noopener noreferrer">Open Pull Request</a>
       </div>
     </section>
   </main>
-
-  <script>
-    (function () {
-      var fields = {
-        title: document.getElementById('title'),
-        student_name: document.getElementById('student_name'),
-        student_slug: document.getElementById('student_slug'),
-        category: document.getElementById('category'),
-        tags: document.getElementById('tags'),
-        course: document.getElementById('course'),
-        short_blurb: document.getElementById('short_blurb'),
-        thumbnail_image: document.getElementById('thumbnail_image'),
-        full_description: document.getElementById('full_description'),
-        repo_url: document.getElementById('repo_url'),
-        demo_url: document.getElementById('demo_url'),
-        publish_date: document.getElementById('publish_date')
-      };
-
-      var filenameOut = document.getElementById('filename_out');
-      var markdownOut = document.getElementById('markdown_out');
-
-      function slugify(text) {
-        return (text || '')
-          .toLowerCase()
-          .trim()
-          .replace(/[^a-z0-9\s-]/g, '')
-          .replace(/\s+/g, '-')
-          .replace(/-+/g, '-');
-      }
-
-      function yamlQuote(text) {
-        var safe = (text || '').replace(/"/g, '\\"');
-        return '"' + safe + '"';
-      }
-
-      function toTagLines(tagsInput) {
-        var tags = tagsInput
-          .split(',')
-          .map(function (tag) { return tag.trim(); })
-          .filter(Boolean);
-
-        if (!tags.length) {
-          return ['  - audio'];
-        }
-
-        return tags.map(function (tag) { return '  - ' + tag; });
-      }
-
-      function todayISO() {
-        return new Date().toISOString().slice(0, 10);
-      }
-
-      function generate() {
-        var title = fields.title.value.trim() || 'Project Title';
-        var studentName = fields.student_name.value.trim() || 'Student Name';
-        var studentSlug = fields.student_slug.value.trim() || slugify(studentName) || 'student-name';
-        var category = fields.category.value.trim() || 'Project';
-        var tags = toTagLines(fields.tags.value);
-        var course = fields.course.value.trim() || '';
-        var shortBlurb = fields.short_blurb.value.trim() || 'One sentence summary.';
-        var thumbnail = fields.thumbnail_image.value.trim() || '/assets/images/projects/your-image.jpg';
-        var fullDescription = fields.full_description.value.trim() || 'Describe your project in detail.';
-        var repoUrl = fields.repo_url.value.trim() || '';
-        var demoUrl = fields.demo_url.value.trim() || '';
-        var publishDate = fields.publish_date.value || todayISO();
-
-        var baseName = slugify(title) || studentSlug + '-project';
-        var filename = baseName + '.md';
-
-        var markdown = [
-          '---',
-          'layout: project',
-          'title: ' + yamlQuote(title),
-          'student_name: ' + yamlQuote(studentName),
-          'student_slug: ' + yamlQuote(studentSlug),
-          'category: ' + yamlQuote(category),
-          'tags:',
-          tags.join('\n'),
-          'course: ' + yamlQuote(course),
-          'short_blurb: ' + yamlQuote(shortBlurb),
-          'thumbnail_image: ' + yamlQuote(thumbnail),
-          'full_description: ' + yamlQuote(fullDescription),
-          'repo_url: ' + yamlQuote(repoUrl),
-          'demo_url: ' + yamlQuote(demoUrl),
-          'publish_date: ' + publishDate,
-          '---'
-        ].join('\n');
-
-        filenameOut.textContent = filename;
-        markdownOut.value = markdown;
-      }
-
-      function copyText(text) {
-        if (!text) return;
-        navigator.clipboard.writeText(text).catch(function () {});
-      }
-
-      document.getElementById('generate').addEventListener('click', generate);
-      document.getElementById('copy_filename').addEventListener('click', function () {
-        copyText(filenameOut.textContent);
-      });
-      document.getElementById('copy_markdown').addEventListener('click', function () {
-        copyText(markdownOut.value);
-      });
-
-      if (!fields.publish_date.value) {
-        fields.publish_date.value = todayISO();
-      }
-
-      generate();
-    })();
-  </script>
 </body>
 </html>

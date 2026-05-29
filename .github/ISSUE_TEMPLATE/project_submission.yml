@@ -1,0 +1,112 @@
+name: Project submission
+description: Submit a student project for the Music Engineering Portfolio.
+title: "Project submission: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for submitting your project. Fill out the fields below and attach all images you want included.
+
+        You do not need to fork the repo or open a pull request.
+  - type: input
+    id: student_name
+    attributes:
+      label: Student name
+      description: Use your full name as it should appear on the site.
+      placeholder: Jane Smith
+    validations:
+      required: true
+  - type: input
+    id: project_title
+    attributes:
+      label: Project title
+      placeholder: Real-Time Spectral Synthesizer
+    validations:
+      required: true
+  - type: input
+    id: course
+    attributes:
+      label: Course
+      description: Optional. Use the course code if this project belongs to a class.
+      placeholder: MUE410
+    validations:
+      required: false
+  - type: dropdown
+    id: category
+    attributes:
+      label: Project type
+      options:
+        - Research
+        - Recording
+        - Project
+        - Capstone
+        - Demo
+    validations:
+      required: true
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: Add 2-5 short tags, separated by commas.
+      placeholder: dsp, plugin, audio effects
+    validations:
+      required: true
+  - type: input
+    id: repo_url
+    attributes:
+      label: Repository URL
+      placeholder: https://github.com/your-username/your-project
+    validations:
+      required: true
+  - type: input
+    id: demo_url
+    attributes:
+      label: Demo URL
+      description: Optional. You can add a video, audio demo, or live demo link.
+      placeholder: https://youtu.be/your-demo-video
+    validations:
+      required: false
+  - type: textarea
+    id: short_blurb
+    attributes:
+      label: Short blurb
+      description: One sentence for the homepage project card.
+      placeholder: A standalone real-time audio plugin designed for spectral gating.
+    validations:
+      required: true
+  - type: textarea
+    id: full_description
+    attributes:
+      label: Full description
+      description: Describe what you made, why you made it, how it works, and what someone should notice.
+      placeholder: |
+        This project explores...
+
+        The main technical features are...
+
+        The result sounds/works like...
+    validations:
+      required: true
+  - type: textarea
+    id: images
+    attributes:
+      label: Images
+      description: Drag and drop your thumbnail, screenshots, diagrams, or other images here. Say which one should be the thumbnail.
+      placeholder: |
+        Drag image files into this box.
+
+        Thumbnail: my-project-cover.png
+        Other images: interface.png, diagram.png
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Final checklist
+      options:
+        - label: I included all required project information.
+          required: true
+        - label: I attached a thumbnail image.
+          required: true
+        - label: My repository link works.
+          required: true

@@ -1,0 +1,64 @@
+.submit-page {
+  padding-bottom: var(--space-7);
+}
+
+.submit-hero {
+  max-width: 48rem;
+  padding-top: var(--space-4);
+}
+
+.submit-hero p {
+  font-size: var(--font-size-200);
+}
+
+.submit-primary-action {
+  margin-top: var(--space-3);
+  min-height: 2.75rem;
+  padding-inline: var(--space-5);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: #ffffff;
+}
+
+.submit-primary-action:hover,
+.submit-primary-action:focus-visible {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: #ffffff;
+}
+
+.submit-steps,
+.submit-note {
+  max-width: 48rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-5);
+}
+
+.submit-step-list {
+  display: grid;
+  gap: var(--space-4);
+  padding-left: 1.4rem;
+}
+
+.submit-step-list li {
+  color: var(--color-text-muted);
+  line-height: var(--line-height-base);
+}
+
+.submit-note pre {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-muted);
+  color: var(--color-text);
+  padding: var(--space-3);
+}
+
+.submit-note code {
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.9rem;
+}
+
+.submit-advanced {
+  color: var(--color-text-muted);
+}
