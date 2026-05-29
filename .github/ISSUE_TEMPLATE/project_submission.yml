@@ -8,6 +8,8 @@ body:
         Thanks for submitting your project. Fill out the fields below and attach all images you want included.
 
         You do not need to fork the repo or open a pull request.
+
+        Important: drag image files into the Images box below. Do not use `assets/images/...` links inside this issue, because GitHub issues treat those as issue-page links and they will look broken.
   - type: input
     id: student_name
     attributes:
@@ -16,6 +18,14 @@ body:
       placeholder: Jane Smith
     validations:
       required: true
+  - type: input
+    id: student_slug
+    attributes:
+      label: Student slug
+      description: Optional. Lowercase letters and hyphens only. If you leave this blank, the maintainer will create it from your name.
+      placeholder: jane-smith
+    validations:
+      required: false
   - type: input
     id: project_title
     attributes:
@@ -78,27 +88,47 @@ body:
     id: full_description
     attributes:
       label: Full description
-      description: Describe what you made, why you made it, how it works, and what someone should notice.
+      description: Describe what you made, why you made it, how it works, and what someone should notice. If you want an image placed somewhere, write a plain note like "put interface.png here" instead of using an assets/images link.
       placeholder: |
         This project explores...
 
         The main technical features are...
 
+        Put interface.png here.
+
         The result sounds/works like...
+    validations:
+      required: true
+  - type: input
+    id: thumbnail_filename
+    attributes:
+      label: Thumbnail image filename
+      description: Type the filename of the image that should be used as the homepage thumbnail.
+      placeholder: my-project-cover.png
     validations:
       required: true
   - type: textarea
     id: images
     attributes:
       label: Images
-      description: Drag and drop your thumbnail, screenshots, diagrams, or other images here. Say which one should be the thumbnail.
+      description: Drag and drop your thumbnail, screenshots, diagrams, or other images here. GitHub will create attachment links automatically.
       placeholder: |
         Drag image files into this box.
 
-        Thumbnail: my-project-cover.png
-        Other images: interface.png, diagram.png
+        Required: attach your thumbnail image.
+        Optional: attach screenshots, diagrams, or other images.
     validations:
       required: true
+  - type: textarea
+    id: image_placement
+    attributes:
+      label: Image placement notes
+      description: Optional. Tell the maintainer where each non-thumbnail image should appear.
+      placeholder: |
+        interface.png should appear after the paragraph about the UI.
+        diagram.png should appear near the technical explanation.
+    validations:
+      required: false
   - type: checkboxes
     id: checklist
     attributes:
