@@ -8,6 +8,22 @@ require "json"
 ROOT = File.expand_path("..", __dir__)
 PROJECTS_DIR = File.join(ROOT, "_projects")
 ALLOWED_CATEGORIES = ["Research", "Recording", "Project", "Capstone", "Demo"].freeze
+ISSUE_FIELD_LABELS = [
+  "Student name",
+  "Student slug",
+  "Project title",
+  "Course",
+  "Project type",
+  "Tags",
+  "Repository URL",
+  "Demo URL",
+  "Short blurb",
+  "Full description",
+  "Thumbnail image filename",
+  "Images",
+  "Image placement notes",
+  "Final checklist"
+].freeze
 
 def slugify(text)
   text.to_s.downcase.strip
@@ -26,8 +42,9 @@ end
 
 def issue_sections(body)
   sections = {}
+  labels_pattern = ISSUE_FIELD_LABELS.map { |label| Regexp.escape(label) }.join("|")
 
-  body.to_s.scan(/^###\s+(.+?)\s*\n+(.*?)(?=^###\s+|\z)/m) do |label, value|
+  body.to_s.scan(/^###\s+(#{labels_pattern})\s*\n+(.*?)(?=^###\s+(?:#{labels_pattern})\s*$|\z)/m) do |label, value|
     key = label.downcase.gsub(/[^a-z0-9]+/, "_").gsub(/\A_|_\z/, "")
     sections[key] = clean_issue_value(value)
   end
@@ -36,7 +53,8 @@ def issue_sections(body)
 end
 
 def basename_only(filename)
-  File.basename(filename.to_s.strip).gsub(/[^A-Za-z0-9._-]/, "-")
+  ascii = filename.to_s.strip.encode("ASCII", invalid: :replace, undef: :replace, replace: "")
+  File.basename(ascii).gsub(/[^A-Za-z0-9._-]/, "-").gsub(/-+/, "-").gsub(/-+\z/, "")
 end
 
 def yaml_string(value)
@@ -47,7 +65,11 @@ def yaml_block(key, value)
   lines = value.to_s.strip.split("\n")
   lines = [""] if lines.empty?
 
-  ([%("#{key}: |-")] + lines.map { |line| "  #{line}" }).join("\n")
+  ([%Q(#{key}: |-)] + lines.map { |line| "  #{line}" }).join("\n")
+end
+
+def normalize_asset_paths(markdown)
+  markdown.to_s.gsub("](assets/images/projects/", "](/assets/images/projects/")
 end
 
 def unique_project_path(base_slug)
@@ -84,9 +106,13 @@ tags = fields.fetch("tags", "").split(",").map { |tag| tag.strip.downcase }.reje
 tags = ["audio"] if tags.empty?
 
 thumbnail_filename = basename_only(fields.fetch("thumbnail_image_filename", ""))
+if thumbnail_filename.empty?
+  thumbnail_filename = fields.fetch("images", "")[/Thumbnail:\s*([^\s,\)]+)/i, 1].to_s
+  thumbnail_filename = basename_only(thumbnail_filename)
+end
 thumbnail_filename = "replace-with-thumbnail.jpg" if thumbnail_filename.empty?
 
-full_description = fields.fetch("full_description", "").strip
+full_description = normalize_asset_paths(fields.fetch("full_description", "").strip)
 full_description = "Describe this project." if full_description.empty?
 
 project_slug = slugify(project_title)
