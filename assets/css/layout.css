@@ -14,9 +14,9 @@ footer {
   z-index: 40;
   width: 100%;
   margin: 0;
-  background: color-mix(in srgb, var(--color-bg) 88%, #fff 12%);
-  border-bottom: 1px solid color-mix(in srgb, var(--color-border) 85%, #fff 15%);
-  backdrop-filter: saturate(140%) blur(8px);
+  background: var(--color-green);
+  border-bottom: 4px solid var(--color-accent);
+  box-shadow: 0 8px 24px rgb(2 50 30 / 18%);
 }
 
 .nav-shell {
@@ -28,15 +28,16 @@ footer {
 }
 
 .site-title {
-  color: var(--color-text);
+  color: #ffffff;
   font-size: var(--font-size-300);
-  font-weight: 640;
-  letter-spacing: -0.012em;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: 0;
 }
 
 .site-title:hover,
 .site-title:focus-visible {
-  color: var(--color-text);
+  color: #ffffff;
 }
 
 .site-nav {
@@ -49,18 +50,20 @@ footer {
   display: inline-flex;
   align-items: center;
   min-height: 2rem;
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
+  border: 1px solid rgb(255 255 255 / 24%);
+  border-radius: var(--radius-sm);
   padding: 0.35rem 0.8rem;
-  color: var(--color-text-muted);
+  color: rgb(255 255 255 / 86%);
   font-size: var(--font-size-100);
+  font-family: var(--font-sans);
+  font-weight: 700;
 }
 
 .nav-link:hover,
 .nav-link:focus-visible {
   border-color: var(--color-accent);
-  color: var(--color-accent);
-  background: #f5f8ff;
+  color: #ffffff;
+  background: rgb(243 115 34 / 18%);
 }
 
 main {

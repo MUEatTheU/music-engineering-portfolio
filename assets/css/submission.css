@@ -17,7 +17,7 @@
   padding-inline: var(--space-5);
   background: var(--color-accent);
   border-color: var(--color-accent);
-  color: #ffffff;
+  color: var(--color-text);
 }
 
 .submit-primary-action:hover,
@@ -49,8 +49,8 @@
   overflow-x: auto;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  background: var(--color-surface-muted);
-  color: var(--color-text);
+  background: var(--color-green);
+  color: #ffffff;
   padding: var(--space-3);
 }
 
