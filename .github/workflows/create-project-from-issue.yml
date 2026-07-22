@@ -31,6 +31,8 @@ jobs:
         run: gh issue view "$ISSUE_NUMBER" --json number,title,body,url > issue.json
 
       - name: Create project file
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: ruby scripts/create_project_from_issue.rb issue.json
 
       - name: Push review branch
@@ -43,7 +45,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$BRANCH"
-          git add _projects/*.md
+          git add _projects/*.md assets/images/projects/
           git diff --cached --quiet && {
             echo "No project file changes were generated."
             exit 1
@@ -66,10 +68,9 @@ jobs:
           $COMPARE_URL
 
           Maintainer checklist:
-          - Download attached images from this issue.
-          - Add images to \`assets/images/projects/\`.
-          - Confirm \`thumbnail_image\` matches the thumbnail filename.
-          - Add inline image Markdown to \`full_description\` if needed.
+          - Confirm the downloaded thumbnail and project images look correct.
+          - Confirm \`thumbnail_image\` points to the intended thumbnail.
+          - Rearrange images in \`full_description\` if desired.
           - Preview the project page before merging.
           EOF
           gh issue comment "$ISSUE_NUMBER" --body-file comment.md

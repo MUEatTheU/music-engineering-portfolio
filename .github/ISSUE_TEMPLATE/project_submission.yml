@@ -104,7 +104,7 @@ body:
     id: thumbnail_filename
     attributes:
       label: Thumbnail image filename
-      description: Type the filename of the image that should be used as the homepage thumbnail.
+      description: Type the filename you want used for the homepage thumbnail, then upload that image first in the Images field.
       placeholder: my-project-cover.png
     validations:
       required: true
@@ -112,19 +112,18 @@ body:
     id: images
     attributes:
       label: Images
-      description: Drag and drop your thumbnail, screenshots, diagrams, or other images here. GitHub will create attachment links automatically.
+      description: Drag and drop the thumbnail first, followed by screenshots, diagrams, or other images. GitHub will create attachment links automatically.
       placeholder: |
-        Drag image files into this box.
+        Drag the thumbnail into this box first.
 
-        Required: attach your thumbnail image.
-        Optional: attach screenshots, diagrams, or other images.
+        Then drag in screenshots, diagrams, or other images in the order you want to name them below.
     validations:
       required: true
   - type: textarea
     id: image_placement
     attributes:
       label: Image placement notes
-      description: Optional. Tell the maintainer where each non-thumbnail image should appear.
+      description: Optional. List each non-thumbnail filename in upload order and tell the maintainer where it should appear.
       placeholder: |
         interface.png should appear after the paragraph about the UI.
         diagram.png should appear near the technical explanation.
